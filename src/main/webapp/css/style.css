@@ -1,0 +1,56 @@
+body {
+  text-align: center;
+}
+
+
+.stop {
+  
+}
+
+.head {
+  font-weight: bold;
+  background-color: #abc9e2;
+}
+
+.horaires:nth-child(odd) {
+  background-color: #e1eef5;
+}
+
+.horaires:nth-child(even) {
+  background-color: #f7fafb;
+}
+
+.numero {
+	
+}
+
+.previous {
+	
+}
+
+.horaires {
+	
+}
+
+.horaire {
+	
+}
+
+.faster1 {
+	color: #1fc11d;
+	font-weight: bold;
+}
+
+.faster2 {
+  color: #1fc11d;
+}
+
+
+/**************** RESPONSIVE ******************/
+
+@media only screen and (max-device-width: 480px) {
+	.row {
+    margin-right: -5px;
+    margin-left: -5px;
+  }
+}
