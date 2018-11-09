@@ -29,7 +29,7 @@ import com.isochrones.model.Isochrones;
 @Component
 public class IsochronesBusiness {
 
-	public Isochrones getIsochrones(String from, List<Integer> durations, String beginDateString, Integer delay, Integer nb) throws IOException, URISyntaxException, ParseException, InterruptedException, ExecutionException {
+	public Isochrones getIsochrones(String fromOrTo, String fromOrToValue, List<Integer> durations, String beginDateString, Integer delay, Integer nb) throws IOException, URISyntaxException, ParseException, InterruptedException, ExecutionException {
 		
 		// Define the different dates
 		LocalDateTime beginDate = LocalDateTime.parse(beginDateString);
@@ -48,7 +48,7 @@ public class IsochronesBusiness {
 		List<Future<HashMap<Integer, String>>> futureList = new ArrayList<>();
 		// Put all geoJson in map by duration
 		for (LocalDateTime date : dates) {
-			Callable<HashMap<Integer, String>> task = new NavitiaCallTask(durations, date, from);
+			Callable<HashMap<Integer, String>> task = new NavitiaCallTask(durations, date, fromOrTo, fromOrToValue);
 			futureList.add(executor.submit(task));
 		}
 				

@@ -25,12 +25,14 @@ public class NavitiaCallTask implements Callable<HashMap<Integer, String>> {
 
 	private List<Integer> durations;
 	private LocalDateTime date;
-	private String from;
+	private String fromOrTo;
+	private String fromOrToValue;
 	
-	public NavitiaCallTask(List<Integer> durations, LocalDateTime date, String from) {
+	public NavitiaCallTask(List<Integer> durations, LocalDateTime date, String fromOrTo, String fromOrToValue) {
 		this.durations = durations;
 		this.date = date;
-		this.from = from;
+		this.fromOrTo = fromOrTo;
+		this.fromOrToValue = fromOrToValue;
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class NavitiaCallTask implements Callable<HashMap<Integer, String>> {
 		try {
 
 			URIBuilder uriBuilder = new URIBuilder("https://api.navitia.io/v1/coverage/fr-idf/isochrones?")
-					.addParameter("from", from)
+					.addParameter(fromOrTo, fromOrToValue)
 					.addParameter("datetime", date.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 			durations.forEach(x -> uriBuilder.addParameter("boundary_duration[]", x.toString()));
 			URI uri = uriBuilder.build();

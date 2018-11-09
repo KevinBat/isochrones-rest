@@ -6,11 +6,19 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.isochrones.exception.BadParametersException;
+
 @RestControllerAdvice
 public class IsochroneExceptionHandler {
-
+	
 	@ExceptionHandler
 	public ResponseEntity<com.isochrones.model.Error> handleException(ServletRequestBindingException e){
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body(new com.isochrones.model.Error(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+	}
+
+	@ExceptionHandler
+	public ResponseEntity<com.isochrones.model.Error> handleException(BadParametersException e){
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(new com.isochrones.model.Error(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
 	}
