@@ -19,8 +19,8 @@ public class SpringConfig {
         return vr;
     }
 	
-	 public static void main(String[] args) {
-	        SpringApplication.run(SpringConfig.class, args);
-	    }
+	public static void main(String[] args) {
+		SpringApplication.run(SpringConfig.class, args);
+	}
 	
 }
