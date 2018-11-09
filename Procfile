@@ -1,1 +1,1 @@
-web: java -jar target/isochrones.jar
+web: java -Dserver.port=$PORT -jar target/isochrones.jar
